@@ -14,6 +14,27 @@ template][from template].
 [CI badge]: https://img.shields.io/github/workflow/status/tarleb/lua-filter-template/CI?logo=github
 [CI workflow]: https://github.com/tarleb/lua-filter-template/actions/workflows/ci.yaml
 
+Checklist
+------------------------------------------------------------------
+
+This is just a template, so a few things should be changed to make
+good use of this template. You can use the checklist below to
+ensure that you get the most out of it. We recommend that you
+perform at least the first two steps, everything else is up to
+you.
+
+1. [ ] **Rename the filter**: rename the filter `greetings.lua` to
+   your chosen name. It's often a good idea to make the filter
+   name match the repository name: if your repository is named
+   `lorem`, then the filter should be named `lorem.lua`.
+
+2. [ ] **Choose a license**: The template is published as CC0,
+   which is most likely not what you want. We recommend the MIT
+   license.
+
+3. [ ] **Update this README**: describe your filter, so people
+   will know what to expect. You may also want to update the URLs
+   above to match your repository.
 
 License
 ------------------------------------------------------------------
