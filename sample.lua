@@ -10,6 +10,7 @@ PANDOC_VERSION:must_be_at_least '2.17'
 local function say_hello (doc)
   doc.meta.title = pandoc.Inlines 'Greetings!'
   doc.blocks = pandoc.Blocks{pandoc.Para 'Hello from the Lua filter!'}
+  return doc
 end
 
 return {
