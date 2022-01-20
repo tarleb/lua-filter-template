@@ -1,5 +1,5 @@
 # Allow to use a different pandoc binary, e.g. when testing.
-PANDOC = pandoc
+PANDOC ?= pandoc
 # Allow to adjust the diff command if necessary
 DIFF = diff
 
