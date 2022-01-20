@@ -1,0 +1,20 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "author" , MetaInlines [ Str "Nullus" ] )
+          , ( "title" , MetaInlines [ Str "Greetings!" ] )
+          ]
+    }
+  [ Para
+      [ Str "Hello"
+      , Space
+      , Str "from"
+      , Space
+      , Str "the"
+      , Space
+      , Str "Lua"
+      , Space
+      , Str "filter!"
+      ]
+  ]
