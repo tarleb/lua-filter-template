@@ -26,3 +26,37 @@ test: $(FILTER_FILE) test/input.md
 test/expected.native: $(FILTER_FILE) test/input.md
 	$(PANDOC) --lua-filter=$< --standalone --to=native --output=$@ \
 		test/input.md
+
+#
+# Docs
+#
+.PHONY: docs
+docs: docs/index.html docs/$(FILTER_FILE)
+
+docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
+		docs/output.md
+	@mkdir -p docs
+	pandoc \
+	    --standalone \
+	    --lua-filter=.tools/docs.lua \
+	    --metadata=sample-file:test/input.md \
+	    --metadata=result-file:docs/output.md \
+	    --metadata=code-file:$(FILTER_FILE) \
+	    --self-contained \
+	    --toc \
+	    --output=$@ $<
+
+docs/output.md: $(FILTER_FILE) test/input.md
+	$(PANDOC) \
+	    --output=$@ \
+	    --lua-filter=$< \
+	    --to=markdown \
+	    --standalone \
+	    test/input.md
+
+docs/$(FILTER_FILE): $(FILTER_FILE)
+	(cd docs && ln -sf ../$< $<)
+
+.PHONY: clean
+clean:
+	rm -f docs/output.md docs/index.html
