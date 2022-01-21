@@ -1,15 +1,17 @@
---- sample.lua – filter to include Markdown files
+--- greetings.lua – turns any document into a friendly greeting
 ---
 --- Copyright: © 2021–2022 Contributors
+--- License: MIT – see LICENSE for details
 
 -- Makes sure users know if their pandoc version is too old for this
 -- filter.
 PANDOC_VERSION:must_be_at_least '2.17'
 
---- Replaces the contents of a document with a simple greeting.
+--- Amends the contents of a document with a simple greeting.
 local function say_hello (doc)
-  doc.meta.title = pandoc.Inlines 'Greetings!'
-  doc.blocks = pandoc.Blocks{pandoc.Para 'Hello from the Lua filter!'}
+  doc.meta.subtitle = doc.meta.title            -- demote title to subtitle
+  doc.meta.title = pandoc.Inlines 'Greetings!'  -- set new title
+  doc.blocks:insert(1, pandoc.Para 'Hello from the Lua filter!')
   return doc
 end
 
