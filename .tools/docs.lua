@@ -20,10 +20,11 @@ local function sample_blocks (sample_file)
   local sample_content = read_file(sample_file)
   local extension = select(2, path.split_extension(sample_file)):sub(2)
   local format = formats_by_extension[extension] or extension
+  local filename = path.filename(sample_file)
 
   local sample_attr = pandoc.Attr('', {format, 'sample'})
   return {
-    pandoc.Header(3, pandoc.Str(path.filename(sample_file))),
+    pandoc.Header(3, pandoc.Str(filename), {filename}),
     pandoc.CodeBlock(sample_content, sample_attr)
   }
 end
@@ -32,10 +33,11 @@ local function result_blocks (result_file)
   local result_content = read_file(result_file)
   local extension = select(2, path.split_extension(result_file)):sub(2)
   local format = formats_by_extension[extension] or extension
+  local filename = path.filename(result_file)
 
   local result_attr = pandoc.Attr('', {format, 'sample'})
   return {
-    pandoc.Header(3, pandoc.Str(path.filename(result_file))),
+    pandoc.Header(3, pandoc.Str(filename), {filename}),
     pandoc.CodeBlock(result_content, result_attr)
   }
 end
