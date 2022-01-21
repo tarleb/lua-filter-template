@@ -34,7 +34,7 @@ test/expected.native: $(FILTER_FILE) test/input.md
 docs: docs/index.html docs/$(FILTER_FILE)
 
 docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
-		docs/output.md
+		docs/output.md docs/style.css
 	@mkdir -p docs
 	pandoc \
 	    --standalone \
@@ -42,9 +42,14 @@ docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
 	    --metadata=sample-file:test/input.md \
 	    --metadata=result-file:docs/output.md \
 	    --metadata=code-file:$(FILTER_FILE) \
-	    --self-contained \
+	    --css=style.css \
 	    --toc \
 	    --output=$@ $<
+
+docs/style.css:
+	curl \
+	    --output $@ \
+	    'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'
 
 docs/output.md: $(FILTER_FILE) test/input.md
 	$(PANDOC) \
@@ -59,4 +64,4 @@ docs/$(FILTER_FILE): $(FILTER_FILE)
 
 .PHONY: clean
 clean:
-	rm -f docs/output.md docs/index.html
+	rm -f docs/output.md docs/index.html docs/style.css
