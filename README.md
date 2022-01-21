@@ -1,10 +1,13 @@
-Lua Filter Template
+Greetings, a Lua Filter Template
 ==================================================================
 
 [![GitHub build status][CI badge]][CI workflow]
 
+Greetings is a friendly Lua filter that adds a welcoming message
+to the document.
+
 This repository serves as a template intended to make publishing
-of pandoc [Lua filters][] easy and convenient. Just click "Use
+of pandoc [Lua filters][] easy and convenient. Just click "use
 this template" and then make modifications in your new repository.
 See also the GitHub documentation on [creating a repository from a
 template][from template].
@@ -28,9 +31,9 @@ you.
    name match the repository name: if your repository is named
    `lorem`, then the filter should be named `lorem.lua`.
 
-2. [ ] **Choose a license**: The template is published as CC0,
-   which is most likely not what you want. We recommend the MIT
-   license.
+2. [ ] **Update the license**: The template is published under the
+   MIT, and we recommend to keep the same license for your code.
+   You should update the LICENSE file so it has your name.
 
 3. [ ] **Update this README**: describe your filter, so people
    will know what to expect. You may also want to update the URLs
