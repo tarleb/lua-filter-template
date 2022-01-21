@@ -42,7 +42,5 @@ you.
 License
 ------------------------------------------------------------------
 
-This template repository is published under the Creative Commons
-CC0 License, see the file `LICENSE`. Users of the template may
-choose to use a different license, in which case the file should
-be updated.
+This pandoc Lua filter is published under the MIT license, see
+file `LICENSE` for details.
