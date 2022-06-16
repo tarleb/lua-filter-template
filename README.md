@@ -39,12 +39,15 @@ you.
    will know what to expect. You may also want to update the URLs
    above to match your repository.
 
-4. [ ] **Build the documentation**: this template provides a
-   [tool][doc generator] to build an HTML documentation. Execute
+4. [ ] **Build and serve the documentation**: this template provides
+   a [tool][doc generator] to build an HTML documentation. Execute
    `make docs` to update the documentation. The documentation website
-   files are located in the `docs` folder.
+   files are located in the `docs` folder and can be published with
+   GitHub Pages (see the GitHub documentation on
+   [configuring GitHub Pages][GitHub Pages]).
 
 [doc generator]: ./.tools/docs.lua
+[GitHub Pages]: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
 License
 ------------------------------------------------------------------
