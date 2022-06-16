@@ -39,6 +39,13 @@ you.
    will know what to expect. You may also want to update the URLs
    above to match your repository.
 
+4. [ ] **Build the documentation**: this template provides a
+   [tool][doc generator] to build an HTML documentation. Execute
+   `make docs` to update the documentation. The documentation website
+   files are located in the `docs` folder.
+
+[doc generator]: ./.tools/docs.lua
+
 License
 ------------------------------------------------------------------
 
