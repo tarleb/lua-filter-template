@@ -48,7 +48,7 @@ docs: docs/index.html docs/$(FILTER_FILE)
 docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
 		docs/output.md docs/style.css
 	@mkdir -p docs
-	pandoc \
+	$(PANDOC) \
 	    --standalone \
 	    --lua-filter=.tools/docs.lua \
 	    --metadata=sample-file:test/input.md \
