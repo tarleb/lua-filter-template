@@ -35,9 +35,33 @@ you.
    MIT, and we recommend to keep the same license for your code.
    You should update the LICENSE file so it has your name.
 
-3. [ ] **Update this README**: describe your filter, so people
+3. [ ] **Update this README**: Describe your filter, so people
    will know what to expect. You may also want to update the URLs
-   above to match your repository.
+   in the links above to match your repository.
+
+4. [ ] (optional) **Setup Quarto extension**: This step is
+   recommended if you want to make it easy for
+   [Quarto](https://quarto.org) users to install and use your
+   filter: Quarto expects the filter to be placed in the
+   `_extensions` folder, packed together with a YAML file
+   containing relevant metadata. Run
+
+   ``` bash
+   make quarto-extension
+   ```
+
+   to generate the necessary files and directories. You should
+   commit the generated files to source control. Note that this
+   command moves the main `.lua` file below the `_extensions`
+   directory, replacing the original file with a symlink.
+
+5. [ ] (optional) **Tag a release**: The easiest way to create a
+   new release is to run `make release VERSION=0.0.1`. This will
+   update the Quarto extension, commit the changes, then tag the
+   resulting commit with the given VERSION. This step is
+   recommended if the filter is distributed as a Quarto extension.
+
+[hard link]: https://en.wikipedia.org/wiki/Hard_link
 
 License
 ------------------------------------------------------------------
