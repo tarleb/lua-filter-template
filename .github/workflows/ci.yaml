@@ -13,7 +13,9 @@ on:
       - 'README.md'
       - LICENSE
       - .editorconfig
-  # Test if things still work each Tuesday morning at 5:39 UTC
+  # Test if things still work each Tuesday morning at 5:39 UTC.
+  # This way we will catch incompatible pandoc changes in a timely
+  # manner.
   schedule:
     # At 5:39am each Tuesday
     - cron: '39 5 * * 2'
