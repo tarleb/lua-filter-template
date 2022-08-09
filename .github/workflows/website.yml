@@ -28,13 +28,13 @@ jobs:
         uses: actions/configure-pages@v1
       - name: Render Website
         run: |
-          make -B docs \
+          make -B website \
             PANDOC="docker run --rm --volume $(pwd):/data \
               --user $(id -u):$(id -g) pandoc/core:latest"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'docs'
+          path: '_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main

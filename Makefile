@@ -40,30 +40,32 @@ test/expected.native: $(FILTER_FILE) test/input.md
 		test/input.md
 
 #
-# Docs
+# Website
 #
-.PHONY: docs
-docs: docs/index.html docs/$(FILTER_FILE)
+.PHONY: website
+website: _site/index.html _site/$(FILTER_FILE)
 
-docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
-		docs/output.md docs/style.css
-	@mkdir -p docs
+_site/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
+		_site/output.md _site/style.css
+	@mkdir -p _site
 	$(PANDOC) \
 	    --standalone \
 	    --lua-filter=.tools/docs.lua \
 	    --metadata=sample-file:test/input.md \
-	    --metadata=result-file:docs/output.md \
+	    --metadata=result-file:_site/output.md \
 	    --metadata=code-file:$(FILTER_FILE) \
 	    --css=style.css \
 	    --toc \
 	    --output=$@ $<
 
-docs/style.css:
+_site/style.css:
+	@mkdir -p _site
 	curl \
 	    --output $@ \
 	    'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'
 
-docs/output.md: $(FILTER_FILE) test/input.md
+_site/output.md: $(FILTER_FILE) test/input.md
+	@mkdir -p _site
 	$(PANDOC) \
 	    --output=$@ \
 	    --lua-filter=$< \
@@ -71,7 +73,8 @@ docs/output.md: $(FILTER_FILE) test/input.md
 	    --standalone \
 	    test/input.md
 
-docs/$(FILTER_FILE): $(FILTER_FILE)
+_site/$(FILTER_FILE): $(FILTER_FILE)
+	@mkdir -p _site
 	(cd docs && ln -sf ../$< $<)
 
 #
