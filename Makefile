@@ -135,7 +135,7 @@ setup:
       -e '/^\* \*/,/^\* \*/d' \
 	    README.md
 	sed -i'' -e 's/greetings/$(REPO_NAME)/g' test/test.yaml
-	sed -i'' -e 's/Albert Krewinkel/$(USER_NAME)' LICENSE
+	sed -i'' -e 's/Albert Krewinkel/$(USER_NAME)/' LICENSE
 
 #
 # Clean
