@@ -17,14 +17,17 @@ template][from template].
 [CI badge]: https://img.shields.io/github/workflow/status/tarleb/lua-filter-template/CI?logo=github
 [CI workflow]: https://github.com/tarleb/lua-filter-template/actions/workflows/ci.yaml
 
-Checklist
+Template Usage
 ------------------------------------------------------------------
 
-This is just a template, so a few things should be changed to make
-good use of this template. You can use the checklist below to
-ensure that you get the most out of it. We recommend that you
-perform at least the first two steps, everything else is up to
-you.
+This section describes how to use the template.
+
+### Checklist
+
+A few things should be updated in the repository after cloning
+this template. You can use the checklist below to ensure that you
+get the most out of it. We recommend that you perform at least the
+first two steps, everything else is up to you.
 
 1. [ ] **Rename the filter**: rename the filter `greetings.lua` to
    your chosen name. It's often a good idea to make the filter
@@ -69,7 +72,7 @@ targets while keeping the general structure.
 Use the Makefile with `make ...`, where `...` denotes one of the
 targets listed in this section.
 
-### `test`
+#### `test`
 
 Tests the filter. This target runs your filter on file
 `test/input.md` and compares the result with
@@ -85,7 +88,7 @@ The test configs are kept in file `test/test.yaml`. The file is
 generated on demand, but you may want to check it into source
 control and modify it as needed.
 
-### `quarto-extension`
+#### `quarto-extension`
 
 This target sets the repository up to be used as a [Quarto][]
 extension. The target will create the directory structure expected
@@ -96,7 +99,7 @@ with a symlink.
 
 [Quarto]: https://quarto.org
 
-### `release`
+#### `release`
 
 Creates a new release for the given version. The version must be
 passed as a variable:
@@ -107,15 +110,14 @@ make release VERSION=1.0.0
 
 The `release` target depends on `quarto-extension`.
 
-### `website`
+#### `website`
 
 Generates a website for this filter. The website will contain the
 contents of this README, an example generated from the test input,
 as well as the full filter code. The page components are combined
 with the `.tools/docs.lua` filter.
 
-Website
-------------------------------------------------------------------
+### Website
 
 The repository template comes with a GitHub Action to publish a
 website via GitHub pages. It expects the new "GitHub Actions"
@@ -123,6 +125,51 @@ source to be used for Pages.
 
 Remove the file `.github/workflows/website.lua` to disable this
 feature.
+
+------------------------------------------------------------------
+
+Usage
+------------------------------------------------------------------
+
+The filter modifies the internal document representation; it can
+be used with many publishing systems that are based on pandoc.
+
+### Plain pandoc
+
+Pass the filter to pandoc via the `--lua-filter` (or `-L`) command
+line option.
+
+    pandoc --lua-filter greetings.lua ...
+
+### Quarto
+
+Users of Quarto can install this filter as an extension with
+
+    quarto install extension tarleb/greetings
+
+and use it by adding `greetings` to the `filters` entry
+in their YAML header.
+
+``` yaml
+---
+filters:
+  - greetings
+---
+```
+
+### R Markdown
+
+Use `pandoc_args` to invoke the filter. See the [R Markdown
+Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/lua-filters.html)
+for details.
+
+``` yaml
+---
+output:
+  word_document:
+    pandoc_args: ['--lua-filter=greetings.lua']
+---
+```
 
 License
 ------------------------------------------------------------------
