@@ -20,6 +20,10 @@ ifeq "$(VERSION)" ""
 VERSION = 0.0.0
 endif
 
+# GitHub repository; used to setup the filter.
+REPO_PATH = $(shell git remote get-url origin | sed -e 's%.*github\.com[/:]%%')
+REPO_NAME = $(shell git remote get-url origin | sed -e 's%.*/%%')
+
 # Test that running the filter on the sample input document yields
 # the expected output.
 #
@@ -131,6 +135,14 @@ release: quarto-extension
 update-name:
 	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' README.md
 	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' test/test.yaml
+
+setup:
+	git mv greetings.lua $(REPO_NAME).lua
+	sed -i'' \
+	    -e 's/greetings/$(REPO_NAME)/g' \
+	    -e 's#tarleb/lua-filter-template#$(REPO_PATH)#g' \
+	    README.md
+	sed -i'' -e 's/greetings/$(REPO_NAME)/g' test/test.yaml
 
 #
 # Clean
