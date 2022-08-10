@@ -81,6 +81,10 @@ a specific output format. E.g., if the filter only works for HTML
 output, you may choose to replace `test/expected.native` with
 `test/expected.html`, and to compare that file instead.
 
+The test configs are kept in file `test/test.yaml`. The file is
+generated on demand, but you may want to check it into source
+control and modify it as needed.
+
 ### `quarto-extension`
 
 This target sets the repository up to be used as a [Quarto][]

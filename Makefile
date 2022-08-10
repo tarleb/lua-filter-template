@@ -25,8 +25,8 @@ endif
 #
 # The automatic variable `$<` refers to the first dependency
 # (i.e., the filter file).
-test: $(FILTER_FILE) test/input.md
-	$(PANDOC) --lua-filter=$< --to=native --standalone test/input.md | \
+test: $(FILTER_FILE) test/input.md test/test.yaml
+	$(PANDOC) --defaults test/test.yaml | \
 		$(DIFF) test/expected.native -
 
 # Ensure that the `test` target is run each time it's called.
@@ -35,9 +35,20 @@ test: $(FILTER_FILE) test/input.md
 # Re-generate the expected output. This file **must not** be a
 # dependency of the `test` target, as that would cause it to be
 # regenerated on each run, making the test pointless.
-test/expected.native: $(FILTER_FILE) test/input.md
-	$(PANDOC) --lua-filter=$< --standalone --to=native --output=$@ \
-		test/input.md
+test/expected.native: $(FILTER_FILE) test/input.md test/test.yaml
+	$(PANDOC) --defaults test/test.yaml --output=$@
+
+# Settings for tests as a pandoc "defaults" file. This target
+# exists to get started quickly after renaming the filter. Feel
+# free to delete it after the defaults file is created.
+test/test.yaml:
+	@printf 'Generating test/test.yaml...'
+	@printf 'input-files: ["test/input.md"]\n' > $@
+	@printf 'to: native\n' >> $@
+	@printf 'standalone: true\n' >> $@
+	@printf 'filters:\n' >> $@
+	@printf '  - {type: lua, path: %s}' $(FILTER_FILE) >> $@
+	@printf ' DONE\n'
 
 #
 # Website
@@ -64,14 +75,12 @@ _site/style.css:
 	    --output $@ \
 	    'https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css'
 
-_site/output.md: $(FILTER_FILE) test/input.md
+_site/output.md: $(FILTER_FILE) test/input.md test/test.yaml
 	@mkdir -p _site
 	$(PANDOC) \
-	    --output=$@ \
-	    --lua-filter=$< \
+	    --defaults=test/test.yaml \
 	    --to=markdown \
-	    --standalone \
-	    test/input.md
+	    --output=$@
 
 _site/$(FILTER_FILE): $(FILTER_FILE)
 	@mkdir -p _site
