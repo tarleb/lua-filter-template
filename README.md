@@ -32,11 +32,16 @@ first two steps, everything else is up to you.
 1. [ ] **Rename the filter**: rename the filter `greetings.lua` to
    your chosen name. It's often a good idea to make the filter
    name match the repository name: if your repository is named
-   `lorem`, then the filter should be named `lorem.lua`.
+   `lorem`, then the filter should be named `lorem.lua`:
+
+       git mv greetings.lua <REPO_NAME.lua>
+
+   Run `make update-name` to ensure that the new name is used
+   everywhere.
 
 2. [ ] **Update the license**: The template is published under the
-   MIT, and we recommend to keep the same license for your code.
-   You should update the LICENSE file so it has your name.
+   MIT license, and we recommend to apply the same license to your
+   code. You should update the LICENSE file so it has your name.
 
 3. [ ] **Update this README**: Describe your filter, so people
    will know what to expect. You may also want to update the URLs
@@ -109,6 +114,11 @@ make release VERSION=1.0.0
 ```
 
 The `release` target depends on `quarto-extension`.
+
+### `update-name`
+
+Run this target after renaming the filter file. It will update the
+name in all other files.
 
 #### `website`
 

@@ -125,6 +125,14 @@ release: quarto-extension
 	git tag v$(VERSION) -m "$(FILTER_NAME) $(VERSION)"
 
 #
+# Update filter name
+#
+.PHONY: update-name
+update-name:
+	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' README.md
+	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' test/test.yaml
+
+#
 # Clean
 #
 .PHONY: clean
