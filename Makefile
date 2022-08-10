@@ -23,6 +23,7 @@ endif
 # GitHub repository; used to setup the filter.
 REPO_PATH = $(shell git remote get-url origin | sed -e 's%.*github\.com[/:]%%')
 REPO_NAME = $(shell git remote get-url origin | sed -e 's%.*/%%')
+USER_NAME = $(shell git config user.name)
 
 # Test that running the filter on the sample input document yields
 # the expected output.
@@ -95,7 +96,7 @@ $(QUARTO_EXT_DIR):
 $(QUARTO_EXT_DIR)/_extension.yml: _extensions/$(FILTER_NAME)
 	@printf 'Creating %s\n' $@
 	@printf 'name: %s\n' "$(EXT_NAME)" > $@
-	@printf 'author: %s\n' "$(shell git config user.name)" >> $@
+	@printf 'author: %s\n' "$(USER_NAME)" >> $@
 	@printf 'version: %s\n'  "$(VERSION)" >> $@
 	@printf 'contributes:\n  filters:\n    - %s\n' $(FILTER_FILE) >> $@
 
@@ -126,11 +127,15 @@ update-name:
 
 setup:
 	git mv greetings.lua $(REPO_NAME).lua
+	@# Crude method to updates the examples and links; removes the
+	@# template instructions from the README.
 	sed -i'' \
 	    -e 's/greetings/$(REPO_NAME)/g' \
 	    -e 's#tarleb/lua-filter-template#$(REPO_PATH)#g' \
+      -e '/^\* \*/,/^\* \*/d' \
 	    README.md
 	sed -i'' -e 's/greetings/$(REPO_NAME)/g' test/test.yaml
+	sed -i'' -e 's/Albert Krewinkel/$(USER_NAME)' LICENSE
 
 #
 # Clean

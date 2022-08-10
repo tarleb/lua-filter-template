@@ -6,6 +6,11 @@ Greetings, a Lua Filter Template
 Greetings is a friendly Lua filter that adds a welcoming message
 to the document.
 
+[CI badge]: https://img.shields.io/github/workflow/status/tarleb/lua-filter-template/CI?logo=github
+[CI workflow]: https://github.com/tarleb/lua-filter-template/actions/workflows/ci.yaml
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
 This repository serves as a template intended to make publishing
 of pandoc [Lua filters][] easy and convenient. Just click "use
 this template" and then make modifications in your new repository.
@@ -14,8 +19,6 @@ template][from template].
 
 [Lua filters]: https://pandoc.org/lua-filters.html
 [from template]: https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template
-[CI badge]: https://img.shields.io/github/workflow/status/tarleb/lua-filter-template/CI?logo=github
-[CI workflow]: https://github.com/tarleb/lua-filter-template/actions/workflows/ci.yaml
 
 Template Usage
 ------------------------------------------------------------------
@@ -29,21 +32,24 @@ this template. You can use the checklist below to ensure that you
 get the most out of it. We recommend that you perform at least the
 first two steps, everything else is up to you.
 
-1. [ ] **Rename the filter**: rename the filter `greetings.lua` to
-   your chosen name. It's often a good idea to make the filter
-   name match the repository name: if your repository is named
-   `lorem`, then the filter should be named `lorem.lua`:
+0. [ ] **Use template**: Create a new repo from
+   this template. Use the name that you want to give your filter
+   as a repository name. E.g., a repository for filter
+   `greetings.lua` should be named `greetings`.
+1. [ ] **Clone your new repository**: Run `git clone` to fetch
+   your new repository.
+2. [ ] **Setup the filter**: the easiest way to setup the
+   repository is to run
 
-       git mv greetings.lua <REPO_NAME.lua>
+   ``` bash
+   make setup
+   ```
 
-   Run `make update-name` to ensure that the new name is used
-   everywhere.
+   This will update the README, remove the template-specific
+   documentation, and rename the filter; the repository name is
+   used to determine the new filter name.
 
-2. [ ] **Update the license**: The template is published under the
-   MIT license, and we recommend to apply the same license to your
-   code. You should update the LICENSE file so it has your name.
-
-3. [ ] **Update this README**: Describe your filter, so people
+3. [ ] **Update the README**: Describe your filter, so people
    will know what to expect. You may also want to update the URLs
    in the links above to match your repository.
 
@@ -135,7 +141,7 @@ source to be used for Pages.
 Remove the file `.github/workflows/website.lua` to disable this
 feature.
 
-------------------------------------------------------------------
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
 Usage
 ------------------------------------------------------------------
