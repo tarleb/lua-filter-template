@@ -67,8 +67,7 @@ first two steps, everything else is up to you.
    resulting commit with the given VERSION. This step is
    recommended if the filter is distributed as a Quarto extension.
 
-Development
-------------------------------------------------------------------
+### Development
 
 The repository comes with a `Makefile` intended to make developing
 a filter a pleasant experience. You may want to adjust some of the
