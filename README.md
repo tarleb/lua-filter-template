@@ -120,7 +120,7 @@ make release VERSION=1.0.0
 
 The `release` target depends on `quarto-extension`.
 
-### `update-name`
+#### `update-name`
 
 Run this target after renaming the filter file. It will update the
 name in all other files.
