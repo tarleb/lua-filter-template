@@ -135,6 +135,7 @@ $(QUARTO_EXT_DIR)/$(FILTER_FILE): $(FILTER_FILE) $(QUARTO_EXT_DIR)
 release: quarto-extension
 	git commit -am "Release $(FILTER_NAME) $(VERSION)"
 	git tag v$(VERSION) -m "$(FILTER_NAME) $(VERSION)"
+	@echo 'Do not forget to push the tag back to github with `git push --tags`'
 
 #
 # Set up (normally used only once)
