@@ -144,8 +144,9 @@ release: quarto-extension
 ## Update filter name
 .PHONY: update-name
 update-name:
-	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' README.md
-	sed -i'' -e 's/greetings/$(FILTER_NAME)/g' test/test.yaml
+	sed -i'.bak' -e 's/greetings/$(FILTER_NAME)/g' README.md
+	sed -i'.bak' -e 's/greetings/$(FILTER_NAME)/g' test/test.yaml
+	rm README.md.bak test/test.yaml.bak
 
 ## Set everything up (must be used only once)
 .PHONY: setup
@@ -153,13 +154,14 @@ setup: update-name
 	git mv greetings.lua $(REPO_NAME).lua
 	@# Crude method to updates the examples and links; removes the
 	@# template instructions from the README.
-	sed -i'' \
+	sed -i'.bak' \
 	    -e 's/greetings/$(REPO_NAME)/g' \
 	    -e 's#tarleb/lua-filter-template#$(REPO_PATH)#g' \
       -e '/^\* \*/,/^\* \*/d' \
 	    README.md
-	sed -i'' -e 's/greetings/$(REPO_NAME)/g' test/test.yaml
-	sed -i'' -e 's/Albert Krewinkel/$(USER_NAME)/' LICENSE
+	sed -i'.bak' -e 's/greetings/$(REPO_NAME)/g' test/test.yaml
+	sed -i'.bak' -e 's/Albert Krewinkel/$(USER_NAME)/' LICENSE
+	rm README.md.bak test/test.yaml.bak LICENSE.bak
 
 #
 # Helpers
