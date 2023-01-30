@@ -6,7 +6,7 @@ Greetings, a Lua Filter Template
 Greetings is a friendly Lua filter that adds a welcoming message
 to the document.
 
-[CI badge]: https://img.shields.io/github/workflow/status/tarleb/lua-filter-template/CI?logo=github
+[CI badge]: https://img.shields.io/github/actions/workflow/status/tarleb/lua-filter-template/ci.yaml?branch=main
 [CI workflow]: https://github.com/tarleb/lua-filter-template/actions/workflows/ci.yaml
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
