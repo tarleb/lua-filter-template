@@ -53,6 +53,11 @@ first two steps, everything else is up to you.
    will know what to expect. You may also want to update the URLs
    in the links above to match your repository.
 
+4. [ ] (optional) **Choose default test output formats**. Replace
+   the `FORMAT=native` line in Makefile with your desired default
+   output formats for tests, e.g. `FORMAT=html latex`. These must
+   be possible values of Pandoc's `--to` option.
+
 4. [ ] (optional) **Setup Quarto extension**: This step is
    recommended if you want to make it easy for [Quarto][] users to
    install and use your filter: Quarto expects the filter to be
@@ -82,21 +87,36 @@ targets while keeping the general structure.
 Use the Makefile with `make ...`, where `...` denotes one of the
 targets listed in this section.
 
+#### `generate`
+
+(Re)generate test output files. This target runs your filter on the
+file `test/input.md` and generates one or more output files
+`test/expected.<FORMAT>` (`native` by default).
+
+Change desired output formats by replacing the Makefile's `FORMAT=...`
+line with e.g. `FORMAT=html docx`. These must be possible values of
+Pandoc's `--to` option.
+
+You can also set `FORMAT` on the command line to regenerate files in
+specific output formats:
+
+```bash
+make regenerate FORMAT=docx
+```
+
+Files are generated using the Pandoc default options given in
+`test/test.yaml`. This file is provided by default but you may want
+to check it into source control and modify it as needed.
+
 #### `test`
 
-Tests the filter. This target runs your filter on file
-`test/input.md` and compares the result with
-`test/expected.native`. The latter file is also a valid make
-target; invoke it to regenerate the expected output.
+Tests the filter. This target runs your filter on the file
+`test/input.md` using Pandoc options `test/test.yaml` and compares
+the result with one or more `test/expected.<FORMAT>` files
+(`native` by default).
 
-You may want to modify this target if your filter is intended for
-a specific output format. E.g., if the filter only works for HTML
-output, you may choose to replace `test/expected.native` with
-`test/expected.html`, and to compare that file instead.
-
-The test configs are kept in file `test/test.yaml`. The file is
-generated on demand, but you may want to check it into source
-control and modify it as needed.
+See the `regenerate` target on how to change default `FORMAT` values
+or passing it on the command lines.
 
 #### `quarto-extension`
 
