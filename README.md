@@ -158,7 +158,7 @@ The repository template comes with a GitHub Action to publish a
 website via GitHub pages. It expects the new "GitHub Actions"
 source to be used for Pages.
 
-Remove the file `.github/workflows/website.lua` to disable this
+Remove the file `.github/workflows/website.yml` to disable this
 feature.
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
