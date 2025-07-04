@@ -29,7 +29,7 @@ endif
 
 # GitHub repository; used to setup the filter.
 REPO_PATH = $(shell git remote get-url origin | sed -e 's%.*github\.com[/:]%%')
-REPO_NAME = $(shell git remote get-url origin | sed -e 's%.*/%%')
+REPO_NAME = $(shell git remote get-url origin | sed -e 's%.*/%%' -e 's/\.git$//')
 USER_NAME = $(shell git config user.name)
 
 ## Show available targets
